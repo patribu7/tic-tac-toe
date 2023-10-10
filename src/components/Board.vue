@@ -1,14 +1,16 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-const board = ref([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+const board = ref([['', '', ''], ['', '', ''], ['', '', '']])
 const turn = ref(1)
+
 
 function move(iCell, iRow) {
   let mark = (turn.value % 2 === 0) ? '🔵' : '❌'
 
   board.value[iRow][iCell] = mark
   turn.value++
+
 }
 
 </script>
@@ -16,7 +18,7 @@ function move(iCell, iRow) {
 
 <template>
     <div v-for="(row, iRow) of board" :key="iRow">
-        <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell">{{ cell }}</button>
+        <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell" :disabled="cell != ''" >{{ cell }}</button>
     </div>
 </template>
 
