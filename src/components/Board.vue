@@ -2,15 +2,22 @@
 import { ref, computed } from 'vue'
 
 const board = ref([['', '', ''], ['', '', ''], ['', '', '']])
-const turn = ref(1)
-
+const turn = ref(0)
+const moveOfX = ref([])
+const moveOfO = ref([])
 
 function move(iCell, iRow) {
-  let mark = (turn.value % 2 === 0) ? '🔵' : '❌'
+    if (turn.value % 2 === 0) {
+        let mark = '❌';
+        board.value[iRow][iCell] = mark
+        moveOfX.value.push([iRow, iCell]);
 
-  board.value[iRow][iCell] = mark
-  turn.value++
-
+    } else {
+        let mark = '🔵';
+        board.value[iRow][iCell] = mark;
+        moveOfO.value.push([iRow, iCell]);
+    }
+    turn.value++
 }
 
 </script>
@@ -18,8 +25,10 @@ function move(iCell, iRow) {
 
 <template>
     <div v-for="(row, iRow) of board" :key="iRow">
-        <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell" :disabled="cell != ''" >{{ cell }}</button>
+        <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell" :disabled="cell != ''">{{
+            cell }}</button>
     </div>
+    <div>move of X{{ moveOfX }} / move of O{{ moveOfO }}</div>
 </template>
 
 
