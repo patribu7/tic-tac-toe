@@ -12,8 +12,8 @@ const board = ref([[new Cell('', [1, 4, 7]), new Cell('', [1, 5]), new Cell('', 
 const turn = ref(0)
 const moveOfX = ref([])
 const moveOfO = ref([])
-let winner = ref(false)
-
+const winner = ref(false)
+const placeHolderDisabled = ' '
 
 
 
@@ -27,8 +27,17 @@ function move(iCell, iRow) {
                 return e == el;
             }).length;
             if (itemsFound == 3) {
-                winner.value = 'X'
-              
+                winner.value = 'X';
+                board.value.forEach(row => {
+                    row.forEach(cell => {
+                        if (!cell.mark){
+                            cell.mark = placeHolderDisabled
+
+                        }
+                        
+                    })
+                })
+                    
             }
         });
     } else {
@@ -41,6 +50,16 @@ function move(iCell, iRow) {
             }).length;
             if (itemsFound == 3) {
                 winner.value = 'O'
+                                board.value.forEach(row => {
+                    row.forEach(cell => {
+                        if (!cell.mark){
+                            cell.mark = placeHolderDisabled
+
+                        }
+                        
+                    })
+                })
+              
             }
         });
     }
@@ -64,6 +83,8 @@ function move(iCell, iRow) {
 
 <style>
 .cell {
+    min-width: 200px;
+    min-height: 200px;
     width: 200px;
     height: 200px;
 }
