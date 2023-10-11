@@ -22,15 +22,15 @@ const board =
     );
 
 const turn = ref(0)
-const moveOfX = ref([])
-const moveOfO = ref([])
+const movesOfX = ref([])
+const movesOfO = ref([])
 const winner = ref(false)
 
-function foo(marked, moveOf, iCell, iRow) {
+function foo(marked, movesOf, iCell, iRow) {
     board.value[iRow][iCell].mark = marked
-    moveOf.value.push(...board.value[iRow][iCell].coord);
-    moveOf.value.forEach(el => {
-        var itemsFound = moveOf.value.filter(function (e) {
+    movesOf.value.push(...board.value[iRow][iCell].coord);
+    movesOf.value.forEach(el => {
+        var itemsFound = movesOf.value.filter(function (e) {
             return e == el;
         }).length;
         if (itemsFound == 3) {
@@ -48,9 +48,9 @@ function foo(marked, moveOf, iCell, iRow) {
 
 function move(iCell, iRow) {
     if (turn.value % 2 === 0) {
-        foo('❌', moveOfX, iCell, iRow)
+        foo('❌', movesOfX, iCell, iRow)
     } else {
-        foo('🔵', moveOfO, iCell, iRow)
+        foo('🔵', movesOfO, iCell, iRow)
     }
     turn.value++
 }
@@ -59,10 +59,10 @@ function reset() {
     board.value.forEach(row => {
         row.forEach(cell => {
             cell.reset();
-            moveOfX.value = []
-            moveOfO.value = []
+            movesOfX.value = []
+            movesOfO.value = []
             turn.value = 0
-
+            winner.value = false
         })
     })
 }
@@ -71,12 +71,12 @@ function reset() {
 
 
 <template>
-    <div v-if="winner">the winner is {{ winner }} <button @click="reset">reset</button></div>
+    <div v-show="winner">the winner is {{ winner }} <button @click="reset">reset</button></div>
     <div v-for="(row, iRow) of board" :key="iRow">
         <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell"
-            :disabled="cell.mark != ''">{{cell.mark }}</button>
+            :disabled="cell.mark != ''">{{ cell.mark }}</button>
     </div>
-    <div>move of X{{ moveOfX }} / move of O{{ moveOfO }}</div>
+    <div>move of X{{ movesOfX }} / move of O{{ movesOfO }}</div>
     <div>{{ turn }}</div>
 </template>
 
