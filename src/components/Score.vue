@@ -1,10 +1,12 @@
 <script setup>
+const props = defineProps(['x', 'o'])
 
 </script>
 
 
 <template>
-    <div>I am the score game</div>
+<div>X: {{ x }}</div>
+<div>O:{{ o }}</div>
 </template>
 
 
