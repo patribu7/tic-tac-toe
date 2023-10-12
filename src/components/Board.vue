@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, watch } from 'vue'
 import score from './Score.vue'
 
 class Cell {
@@ -30,19 +30,22 @@ const currentScore = ref({
     x: 0,
     o: 0
 })
+const mark = ref('❌')
 
-function foo(marked, movesOf, iCell, iRow) {
+watch (turn, (newTurn) => {
+    if (newTurn === 9 && !winner.value) {
+        winner.value = 'draw'
+    }
+})
+
+function registerMove(marked, movesOf, iCell, iRow) {
     board.value[iRow][iCell].mark = marked
-    movesOf.value.push(...board.value[iRow][iCell].coord);
-    movesOf.value.forEach(el => {
-        let itemsFound = movesOf.value.filter(function (e) {
+    board.value[iRow][iCell].coord.forEach(el => {
+        let itemsFound = movesOf.value.filter( (e) => {
             return e == el;
         }).length;
-        if (itemsFound >= 3) {
-            winner.value = marked;
-            (marked === '❌') ? currentScore.value.x++ : currentScore.value.o++
-            
-            
+        if (itemsFound > 1) {
+
             board.value.forEach(row => {
                 row.forEach(cell => {
                     if (!cell.mark) {
@@ -50,17 +53,19 @@ function foo(marked, movesOf, iCell, iRow) {
                     }
                 })
             })
-            
+            winner.value = marked;
+            (marked === '❌') ? currentScore.value.x++ : currentScore.value.o++           
         }
     })
+    movesOf.value.push(...board.value[iRow][iCell].coord);
 }
 
 function move(iCell, iRow) {
     if (turn.value % 2 === 0) {
-        foo('❌', movesOfX, iCell, iRow)
+        registerMove('❌', movesOfX, iCell, iRow)
         
     } else {
-        foo('🔵', movesOfO, iCell, iRow)
+        registerMove('🔵', movesOfO, iCell, iRow)
    
     }
     turn.value++
