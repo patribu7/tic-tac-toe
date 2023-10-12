@@ -1,12 +1,12 @@
 <script setup>
-const props = defineProps(['x', 'o'])
+const props = defineProps(['scoreX', 'scoreO'])
 
 </script>
 
 
 <template>
-<div>X: {{ x }}</div>
-<div>O:{{ o }}</div>
+<div>X: {{ scoreX }}</div>
+<div>O:{{ scoreO }}</div>
 </template>
 
 

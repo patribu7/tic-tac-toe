@@ -7,7 +7,7 @@ class Cell {
         this.mark = mark;
         this.coord = coord
     }
-    disabled(){
+    disabled() {
         this.mark = ' '
     }
     reset() {
@@ -27,21 +27,32 @@ const movesOfX = ref([])
 const movesOfO = ref([])
 const winner = ref(false)
 const currentScore = ref({
-    x: 0,
-    o: 0
+    scoreX: 0,
+    scoreO: 0
 })
 const mark = ref('❌')
 
-watch (turn, (newTurn) => {
+watch(turn, (newTurn) => {
     if (newTurn === 9 && !winner.value) {
         winner.value = 'draw'
     }
+    if (newTurn % 2 === 0) {
+        mark.value = '❌'
+    } else {
+        mark.value = '🔵'
+    }
 })
 
-function registerMove(marked, movesOf, iCell, iRow) {
-    board.value[iRow][iCell].mark = marked
+function move(iCell, iRow) {
+    let movesOf
+    if (mark.value === '❌') {
+        movesOf = movesOfX
+    } else {
+        movesOf = movesOfO
+    }
+    board.value[iRow][iCell].mark = mark.value
     board.value[iRow][iCell].coord.forEach(el => {
-        let itemsFound = movesOf.value.filter( (e) => {
+        let itemsFound = movesOf.value.filter((e) => {
             return e == el;
         }).length;
         if (itemsFound > 1) {
@@ -53,22 +64,14 @@ function registerMove(marked, movesOf, iCell, iRow) {
                     }
                 })
             })
-            winner.value = marked;
-            (marked === '❌') ? currentScore.value.x++ : currentScore.value.o++           
+            winner.value = mark.value;
+            (mark.value === '❌') ? currentScore.value.scoreX++ : currentScore.value.scoreO++
+        } else {
+            
         }
     })
-    movesOf.value.push(...board.value[iRow][iCell].coord);
-}
-
-function move(iCell, iRow) {
-    if (turn.value % 2 === 0) {
-        registerMove('❌', movesOfX, iCell, iRow)
-        
-    } else {
-        registerMove('🔵', movesOfO, iCell, iRow)
-   
-    }
     turn.value++
+    movesOf.value.push(...board.value[iRow][iCell].coord);
 }
 
 function reset() {
@@ -87,7 +90,8 @@ function reset() {
 
 
 <template>
-    <score v-bind="currentScore"/>
+    <score v-bind="currentScore" />
+    <div>this is turn of {{ mark }}</div>
     <div v-show="winner">the winner is {{ winner }} <button @click="reset">reset</button></div>
     <div v-for="(row, iRow) of board" :key="iRow">
         <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell"
