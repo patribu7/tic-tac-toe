@@ -5,7 +5,7 @@ import board from './components/Board.vue'
 
 <template>
 
-  
+ 
   <board />
 
 </template>

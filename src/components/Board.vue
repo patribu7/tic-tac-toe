@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import score from './Score.vue'
+import playerChooser from './PlayerChooser.vue'
 
 class Cell {
     constructor(mark, coord) {
@@ -55,7 +56,7 @@ function move(iCell, iRow) {
         let itemsFound = movesOf.value.filter((e) => {
             return e == el;
         }).length;
-        if (itemsFound > 1) {
+        if (itemsFound >= 2) {
 
             board.value.forEach(row => {
                 row.forEach(cell => {
@@ -86,10 +87,17 @@ function reset() {
     })
 }
 
+Array.prototype.random = function () {
+  return this[Math.floor((Math.random()*this.length))];
+}
+const direction = ['left', 'right']
+
 </script>
 
 
 <template>
+    
+    <playerChooser :first-player="direction.random()"/>
     <score v-bind="currentScore" />
     <div>this is turn of {{ mark }}</div>
     <div v-show="winner">the winner is {{ winner }} <button @click="reset">reset</button></div>
