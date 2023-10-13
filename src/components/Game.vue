@@ -33,6 +33,15 @@ const currentScore = ref({
 })
 const mark = ref('❌')
 
+Array.prototype.random = function () {
+  return this[Math.floor((Math.random()*this.length))];
+}
+const direction = ['left', 'right']
+const firstPlayer = ref(direction.random())
+function directionRandom() {
+    firstPlayer.value = direction.random()
+}
+
 watch(turn, (newTurn) => {
     if (newTurn === 9 && !winner.value) {
         winner.value = 'draw'
@@ -83,21 +92,19 @@ function reset() {
             movesOfO.value = []
             turn.value = 0
             winner.value = false
+            directionRandom()
         })
     })
 }
 
-Array.prototype.random = function () {
-  return this[Math.floor((Math.random()*this.length))];
-}
-const direction = ['left', 'right']
+
 
 </script>
 
 
 <template>
     
-    <playerChooser :first-player="direction.random()"/>
+    <playerChooser :first-player="firstPlayer"/>
     <score v-bind="currentScore" />
     <div>this is turn of {{ mark }}</div>
     <div v-show="winner">the winner is {{ winner }} <button @click="reset">reset</button></div>
