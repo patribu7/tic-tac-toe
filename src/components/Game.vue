@@ -106,7 +106,7 @@ function reset() {
     
     <playerChooser :first-player="firstPlayer"/>
     <score v-bind="currentScore" />
-    <div>this is turn of {{ mark }}</div>
+    <div v-show="!winner">this is turn of {{ mark }}</div>
     <div v-show="winner">the winner is {{ winner }} <button @click="reset">reset</button></div>
     <div v-for="(row, iRow) of board" :key="iRow">
         <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell"

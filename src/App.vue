@@ -5,8 +5,10 @@ import game from './components/Game.vue'
 
 <template>
 
- 
+ <h1>TicTacToe</h1>
   <game />
+  <!-- <footer> -->
+  
 
 </template>
 
