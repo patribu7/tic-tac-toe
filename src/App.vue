@@ -1,12 +1,12 @@
 <script setup>
-import board from './components/Board.vue'
+import game from './components/Game.vue'
 
 </script>
 
 <template>
 
  
-  <board />
+  <game />
 
 </template>
 
