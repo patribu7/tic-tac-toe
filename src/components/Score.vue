@@ -19,7 +19,7 @@ const props = defineProps(['scoreX', 'scoreO'])
     flex-direction: column;
     justify-content: space-between;
     top: 200px;
-    width: 100%;
+
     height: 50%;
 }
 .score > div {

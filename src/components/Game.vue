@@ -105,8 +105,13 @@ function retry() {
 <template>
 
     <score v-bind="currentScore" />
-    <div class="turn" v-show="!winner">this is turn of {{ mark }}</div>
-    <div class="winner" v-show="winner">the winner is {{ winner }} <button @click="retry">RETRY</button></div>
+    <div class="turn" v-show="!winner">place the {{ mark }} <br> ---
+    </div>
+
+    <div class="winner" v-show="winner">
+        <span> the winner is... {{ winner }} </span> <br>
+        <button @click="retry">RETRY</button>
+    </div>
     <div class="board">
         <div class="row" v-for="(row, iRow) of board" :key="iRow">
             <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell"
