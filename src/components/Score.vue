@@ -5,9 +5,28 @@ const props = defineProps(['scoreX', 'scoreO'])
 
 
 <template>
-<div>X: {{ scoreX }}</div>
-<div>O:{{ scoreO }}</div>
+    <div class="score">
+        <div>❌ {{ scoreX }}</div>
+        <div>🔵 {{ scoreO }}</div>
+    </div>
 </template>
 
 
-<style></style>
+<style>
+.score {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: 200px;
+    width: 100%;
+    height: 50%;
+}
+.score > div {
+    display: block;
+    width: 100px;
+    text-align: center;
+    font-size: 30pt;
+}
+
+</style>

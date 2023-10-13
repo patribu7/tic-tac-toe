@@ -34,7 +34,7 @@ const currentScore = ref({
 const mark = ref('❌')
 
 Array.prototype.random = function () {
-  return this[Math.floor((Math.random()*this.length))];
+    return this[Math.floor((Math.random() * this.length))];
 }
 const direction = ['left', 'right']
 const firstPlayer = ref(direction.random())
@@ -77,14 +77,14 @@ function move(iCell, iRow) {
             winner.value = mark.value;
             (mark.value === '❌') ? currentScore.value.scoreX++ : currentScore.value.scoreO++
         } else {
-            
+
         }
     })
     turn.value++
     movesOf.value.push(...board.value[iRow][iCell].coord);
 }
 
-function reset() {
+function retry() {
     board.value.forEach(row => {
         row.forEach(cell => {
             cell.reset();
@@ -103,25 +103,52 @@ function reset() {
 
 
 <template>
-    
-    <playerChooser :first-player="firstPlayer"/>
+
     <score v-bind="currentScore" />
-    <div v-show="!winner">this is turn of {{ mark }}</div>
-    <div v-show="winner">the winner is {{ winner }} <button @click="reset">reset</button></div>
-    <div v-for="(row, iRow) of board" :key="iRow">
-        <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell"
-            :disabled="cell.mark != ''">{{ cell.mark }}</button>
+    <div class="turn" v-show="!winner">this is turn of {{ mark }}</div>
+    <div class="winner" v-show="winner">the winner is {{ winner }} <button @click="retry">RETRY</button></div>
+    <div class="board">
+        <div class="row" v-for="(row, iRow) of board" :key="iRow">
+            <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell"
+                :disabled="cell.mark != ''">{{ cell.mark }}
+            </button>
+        </div>
     </div>
-    <div>move of X{{ movesOfX }} / move of O{{ movesOfO }}</div>
-    <div>{{ turn }}</div>
+    <playerChooser :first-player="firstPlayer" />
 </template>
 
 
 <style>
+
+
 .cell {
     min-width: 200px;
     min-height: 200px;
     width: 200px;
     height: 200px;
+    border: 3px solid gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(255,0,0,0.0);
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell:nth-child(1) { 
+    border-left: none
+}
+.cell:nth-child(3) {
+    border-right: none
+}
+.row:nth-child(1) > .cell {
+    border-top: none
+}
+.row:nth-child(3) > .cell {
+    border-bottom: none
 }
 </style>
