@@ -136,6 +136,7 @@ function retry() {
     justify-content: center;
     align-items: center;
     background-color:rgba(255,0,0,0.0);
+    font-size: 28pt;
 }
 
 .row {
