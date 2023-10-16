@@ -108,7 +108,7 @@ function animation() {
     }, 3000);
 
 }
-
+animation()
 </script>
 
 
@@ -137,8 +137,7 @@ function animation() {
 
 
 .cell {
-    min-width: 150px;
-    min-height: 150px;
+
     width: 150px;
     height: 150px;
     border: 3px solid gray;
@@ -147,6 +146,14 @@ function animation() {
     align-items: center;
     background-color:rgba(255,0,0,0.0);
     font-size: 28pt;
+}
+
+@media screen and (max-width: 505px) {
+    .cell {
+        width: 100px;
+        height: 100px;
+    }
+
 }
 
 .row {

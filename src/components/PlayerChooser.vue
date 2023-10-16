@@ -6,11 +6,11 @@ const props = defineProps(['firstPlayer', 'animDisabled'])
 
 <template>
     <div id="player-chooser" :class="{ slip: animDisabled }">
+        <img :src="`/src/assets/images/${firstPlayer}.gif`" /><br>
         <p>
             X play first. <br>
-            The player who has X is on the <br>
-            {{ firstPlayer }}
-            <img :src="`/src/assets/images/${firstPlayer}.gif`" />
+            The player who play X is on the <br>
+            {{ firstPlayer }} <br>
            
         </p>
         <p>...</p>
@@ -19,6 +19,11 @@ const props = defineProps(['firstPlayer', 'animDisabled'])
 </template>
 
 <style scoped>
+
+
+img, p {
+    margin: 0;
+}
 #player-chooser {
     position: absolute;
     display: flex;
@@ -26,13 +31,20 @@ const props = defineProps(['firstPlayer', 'animDisabled'])
     align-items: center;
     justify-content: center;
     text-align: center;
-    bottom: 0px;
+    bottom: 10px;
     right: calc(50% - 150px);
     width: 300px;
     height: 200px;
     background-color: #e8e4d6;
 
 }
+
+/* @media screen and (max-height: 770px) {
+    #player-chooser {
+        display: none;
+    }
+
+} */
 
 .slip {
     animation: slip 3s;
@@ -47,7 +59,7 @@ const props = defineProps(['firstPlayer', 'animDisabled'])
     }
 
     to {
-        bottom: 0;
+        bottom: 10px;
     }
 }
 
