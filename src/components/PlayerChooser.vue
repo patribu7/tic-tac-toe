@@ -1,36 +1,54 @@
 <script setup>
-const props = defineProps(['firstPlayer'])
-
-
+import { ref } from 'vue'
+const props = defineProps(['firstPlayer', 'animDisabled'])
 
 </script>
 
 <template>
-    <div class="player-chooser">
+    <div id="player-chooser" :class="{ slip: animDisabled }">
         <p>
             X play first. <br>
             The player who has X is on the <br>
             {{ firstPlayer }}
+            <img :src="`/src/assets/images/${firstPlayer}.gif`" />
+           
         </p>
         <p>...</p>
-        
+
     </div>
 </template>
 
 <style scoped>
-.player-chooser {
+#player-chooser {
     position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    bottom: 50%;
-    right: 35%;
+    bottom: 0px;
+    right: calc(50% - 150px);
     width: 300px;
     height: 200px;
     background-color: #e8e4d6;
-    
+
+}
+
+.slip {
+    animation: slip 3s;
+
+
+}
+
+@keyframes slip {
+    from {
+        bottom: 100%;
+        
+    }
+
+    to {
+        bottom: 0;
+    }
 }
 
 

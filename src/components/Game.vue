@@ -27,11 +27,11 @@ const turn = ref(0)
 const movesOfX = ref([])
 const movesOfO = ref([])
 const winner = ref(false)
+const mark = ref('❌')
 const currentScore = ref({
     scoreX: 0,
     scoreO: 0
 })
-const mark = ref('❌')
 
 Array.prototype.random = function () {
     return this[Math.floor((Math.random() * this.length))];
@@ -93,11 +93,21 @@ function retry() {
             turn.value = 0
             winner.value = false
             directionRandom()
+            animation()
+
         })
     })
 }
 
+const animDisabled = ref(false)
 
+function animation() {
+    animDisabled.value = true
+    setTimeout(() => {
+        animDisabled.value = false
+    }, 3000);
+
+}
 
 </script>
 
@@ -119,7 +129,7 @@ function retry() {
             </button>
         </div>
     </div>
-    <playerChooser :first-player="firstPlayer" />
+    <playerChooser :first-player="firstPlayer" :animDisabled="animDisabled" />
 </template>
 
 
@@ -127,10 +137,10 @@ function retry() {
 
 
 .cell {
-    min-width: 200px;
-    min-height: 200px;
-    width: 200px;
-    height: 200px;
+    min-width: 150px;
+    min-height: 150px;
+    width: 150px;
+    height: 150px;
     border: 3px solid gray;
     display: flex;
     justify-content: center;
