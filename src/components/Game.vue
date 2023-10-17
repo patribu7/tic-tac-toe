@@ -130,12 +130,12 @@ animation()
 <template>
 
     <score v-bind="currentScore" />
-    <div class="turn" v-show="!winner">place the {{ mark }} <br> ---
+    <div class="turn" v-show="!winner">place the {{ mark }} <br> &nbsp; <br> &nbsp; <br> &nbsp;
     </div>
 
     <div class="winner" v-show="winner">
         <span> the winner is... {{ winner }} </span> <br>
-        <button @click="retry">RETRY</button>
+        <button class="retry" @click="retry">RETRY</button>
     </div>
     <div class="board">
         <div class="row" v-for="(row, iRow) of board" :key="iRow">
@@ -149,7 +149,18 @@ animation()
 
 
 <style>
-
+.retry {
+    margin-top: 10px;
+    margin-left: 10px;
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: bold;
+}
 
 .cell {
 
