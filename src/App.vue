@@ -1,5 +1,6 @@
 <script setup>
 import game from './components/Game.vue'
+import footerComponent from './components/footer.vue'
 
 </script>
 
@@ -7,7 +8,7 @@ import game from './components/Game.vue'
 
  <h1>TicTacToe</h1>
   <game />
-  <!-- <footer> -->
+  <footerComponent />
   
 
 </template>
