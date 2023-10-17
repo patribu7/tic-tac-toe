@@ -1,15 +1,16 @@
 
 <template>
     <footer>
-    <div class="tools">
+    <div class="footer-elem" >
         <img src="" alt="vue">
 
     </div>
-    <div>
-        <a href="#">contact me</a>
-        <a href="#">about me</a>
+    <div class="footer-elem">
+        <p><a href="#">contact me</a></p>
+        <p><a href="#">about me</a></p>
+        <p><a href="#">repo Github</a></p>
     </div>
-    <div>
+    <div class="footer-elem">
         <p>Copyright © 2023 Patrizia Busatto</p>
     </div>
     
@@ -22,5 +23,16 @@
 <style>
 footer {
     margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
 }
+.footer-elem {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50%;
+}
+
 </style>
