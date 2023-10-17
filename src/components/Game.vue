@@ -2,6 +2,10 @@
 import { ref, watch } from 'vue'
 import score from './Score.vue'
 import playerChooser from './PlayerChooser.vue'
+import circleAudio from '../assets/audio/circle.mp3'
+import crossAudio from '../assets/audio/cross.mp3'
+import win from '../assets/audio/win.mp3'
+import draw from '../assets/audio/draw.mp3'
 
 class Cell {
     constructor(mark, coord) {
@@ -47,9 +51,25 @@ watch(turn, (newTurn) => {
         winner.value = 'draw'
     }
     if (newTurn % 2 === 0) {
+        let audio = new Audio(circleAudio)
+        if (newTurn !== 0) {
+            audio.play()
+        }
         mark.value = '❌'
     } else {
+        let audio = new Audio(crossAudio)
+        audio.play()
         mark.value = '🔵'
+    }
+})
+
+watch (winner, (newWinner) => {
+    if (newWinner === '❌' || newWinner === '🔵') {
+        let audio = new Audio(win)
+        audio.play()
+    } else if (newWinner === 'draw') {
+        let audio = new Audio(draw)
+        audio.play()
     }
 })
 
