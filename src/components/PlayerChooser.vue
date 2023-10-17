@@ -9,8 +9,9 @@ const props = defineProps(['firstPlayer', 'animDisabled'])
         <img :src="`/src/assets/images/${firstPlayer}.gif`" /><br>
         <p>
             X play first. <br>
-            The player who play X is on the <br>
-            {{ firstPlayer }} <br>
+            The player who <br>
+            play X is<br>
+            on the {{ firstPlayer }} <br>
            
         </p>
         <p>...</p>
@@ -30,21 +31,16 @@ img, p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    bottom: 10px;
-    right: calc(50% - 150px);
+    text-align: left;
+    opacity: 0;
+    top: calc(50% - 150px);
+    left: 0;
     width: 300px;
     height: 200px;
-    background-color: #e8e4d6;
+    margin-left: -90px;
+    background-color: transparent;
 
 }
-
-/* @media screen and (max-height: 770px) {
-    #player-chooser {
-        display: none;
-    }
-
-} */
 
 .slip {
     animation: slip 3s;
@@ -54,12 +50,14 @@ img, p {
 
 @keyframes slip {
     from {
-        bottom: 100%;
+        opacity: 100%;
+        top:0
         
     }
 
-    to {
-        bottom: 10px;
+    to {  
+        opacity: 100%;  
+        top: calc(50% - 150px);
     }
 }
 
