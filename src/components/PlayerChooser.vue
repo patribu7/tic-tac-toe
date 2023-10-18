@@ -32,14 +32,18 @@ img, p {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-align: left;
-    opacity: 0;
-    top: calc(50% - 150px);
-    left: 0;
+    text-align: center;
+    opacity: 0%;
+    top: calc(50% - 100px);
+    left: calc(50% - 200px);
     width: 300px;
     height: 200px;
-    margin-left: -50px;
-    background-color: transparent;
+    background-color: #e8e4d6;
+    border: solid 1px gray;
+    border-radius: 200px;
+    padding: 40px;
+    z-index: -100;
+
 
 }
 
@@ -51,26 +55,22 @@ img, p {
 
 @keyframes slip {
     0% {
+        z-index: 100;
         opacity: 100%;
         top:0
         
     }
 
-    20% {  
+    20% {
+        z-index: 100;
         opacity: 100%;  
-        top: calc(50% - 150px);
+        top: calc(50% - 100px);
     }
     100% {
+        z-index: 100;
         opacity: 100%;
-        top: calc(50% - 150px);
+        top: calc(50% - 100px);
     }
-}
-
-@media screen and (max-width: 640px) {
-    #player-chooser {
-        display: none
-    }
-
 }
 
 
