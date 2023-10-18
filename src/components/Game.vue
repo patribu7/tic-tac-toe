@@ -34,7 +34,9 @@ const currentScore = ref({
     scoreO: 0
 })
 
-let draw = 'no! It\'s draw!'
+let draw = 'Oh, no! It\'s draw!';
+let markX = '❌';
+let markO = '🔵';
 
 Array.prototype.random = function () {
     return this[Math.floor((Math.random() * this.length))];
@@ -54,16 +56,16 @@ watch(turn, (newTurn) => {
         if (newTurn !== 0) {
             audio.circle.play()
         }
-        mark.value = '❌'
+        mark.value = markX
     } else {
         
         audio.cross.play()
-        mark.value = '🔵'
+        mark.value = markO
     }
 })
 
 watch (winner, (newWinner) => {
-    if (newWinner === '❌' || newWinner === '🔵') {
+    if (newWinner === markX || newWinner === markO) {
         audio.win.play()
     } else if (newWinner === draw) {
         audio.draw.play()
@@ -72,7 +74,7 @@ watch (winner, (newWinner) => {
 
 function move(iCell, iRow) {
     let movesOf
-    if (mark.value === '❌') {
+    if (mark.value === markX) {
         movesOf = movesOfX
     } else {
         movesOf = movesOfO
@@ -92,7 +94,7 @@ function move(iCell, iRow) {
                 })
             })
             winner.value = mark.value;
-            (mark.value === '❌') ? currentScore.value.scoreX++ : currentScore.value.scoreO++
+            (mark.value === markX) ? currentScore.value.scoreX++ : currentScore.value.scoreO++
         } else {
 
         }
