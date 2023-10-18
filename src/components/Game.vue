@@ -34,6 +34,8 @@ const currentScore = ref({
     scoreO: 0
 })
 
+let draw = 'no! It\'s draw!'
+
 Array.prototype.random = function () {
     return this[Math.floor((Math.random() * this.length))];
 }
@@ -45,7 +47,7 @@ function directionRandom() {
 
 watch(turn, (newTurn) => {
     if (newTurn === 9 && !winner.value) {
-        winner.value = 'draw'
+        winner.value = draw
     }
     if (newTurn % 2 === 0) {
         
@@ -63,7 +65,7 @@ watch(turn, (newTurn) => {
 watch (winner, (newWinner) => {
     if (newWinner === '❌' || newWinner === '🔵') {
         audio.win.play()
-    } else if (newWinner === 'draw') {
+    } else if (newWinner === draw) {
         audio.draw.play()
     }
 })
@@ -130,11 +132,11 @@ animation()
 <template>
 
     <score v-bind="currentScore" />
-    <div class="turn" v-show="!winner">place the {{ mark }} <br> &nbsp; <br> &nbsp; <br> &nbsp;
+    <div class="turn" v-show="!winner">place {{ mark }} <br> &nbsp; <br> &nbsp; <br> &nbsp;
     </div>
 
     <div class="winner" v-show="winner">
-        <span> the winner is... {{ winner }} </span> <br>
+        <span> the winner is... <br> {{ winner }} </span> <br>
         <button class="retry" @click="retry">RETRY</button>
     </div>
     <div class="board">
