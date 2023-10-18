@@ -9,9 +9,9 @@
 
         </div>
         <div class="footer-elem">
-            <p><a href="#">contact me</a></p>
-            <p><a href="#">about me</a></p>
-            <p><a href="#">repo Github</a></p>
+            <p><a href="https://patribu7.github.io/#contacts" target="_blank">contact me</a></p>
+            <p><a href="https://patribu7.github.io/#bio" target="_blank">about me</a></p>
+            <p><a href="https://github.com/patribu7/tic-tac-toe" target="_blank">repo Github</a></p>
         </div>
         <div class="footer-elem">
             <p>Copyright © 2023 Patrizia Busatto</p>

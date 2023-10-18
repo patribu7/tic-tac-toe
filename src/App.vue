@@ -1,13 +1,13 @@
 <script setup>
-import game from './components/Game.vue'
-import footerComponent from './components/footer.vue'
+import Game from './components/Game.vue'
+import footerComponent from './components/Footer.vue'
 
 </script>
 
 <template>
 
  <h1>TicTacToe</h1>
-  <game />
+  <Game />
   <footerComponent />
   
 
