@@ -37,6 +37,7 @@ footer {
     justify-content: space-around;
     align-items: center;
     width: 50%;
+    gap: 20px
 }
 
 .tools {
