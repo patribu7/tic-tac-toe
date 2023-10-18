@@ -8,10 +8,11 @@ const props = defineProps(['firstPlayer', 'animDisabled'])
     <div id="player-chooser" :class="{ slip: animDisabled }">
         <img :src="`/src/assets/images/${firstPlayer}.gif`" /><br>
         <p>
-            X play first. <br>
+            ❌ play first. <br>
+            --- <br>
             The player who <br>
-            play X is<br>
-            on the {{ firstPlayer }} <br>
+            play ❌ is<br>
+            on the <strong>{{ firstPlayer }} </strong> <br>
            
         </p>
         <p>...</p>
@@ -37,31 +38,40 @@ img, p {
     left: 0;
     width: 300px;
     height: 200px;
-    margin-left: -90px;
+    margin-left: -50px;
     background-color: transparent;
 
 }
 
 .slip {
-    animation: slip 3s;
+    animation: slip 5s;
 
 
 }
 
 @keyframes slip {
-    from {
+    0% {
         opacity: 100%;
         top:0
         
     }
 
-    to {  
+    20% {  
         opacity: 100%;  
+        top: calc(50% - 150px);
+    }
+    100% {
+        opacity: 100%;
         top: calc(50% - 150px);
     }
 }
 
+@media screen and (max-width: 640px) {
+    #player-chooser {
+        display: none
+    }
 
+}
 
 
 </style>

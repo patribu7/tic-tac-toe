@@ -120,7 +120,7 @@ function animation() {
     animDisabled.value = true
     setTimeout(() => {
         animDisabled.value = false
-    }, 3000);
+    }, 5000);
 
 }
 animation()
@@ -174,7 +174,7 @@ animation()
     font-size: 28pt;
 }
 
-@media screen and (max-width: 505px) {
+@media screen and (max-width: 780px) {
     .cell {
         width: 100px;
         height: 100px;
