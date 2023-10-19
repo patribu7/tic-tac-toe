@@ -43,15 +43,7 @@ let markX = '❌';
 let markO = '🔵';
 // ---------------------------------------------------------------------
 
-Array.prototype.random = function () {
-    return this[Math.floor((Math.random() * this.length))];
-}
-const direction = ['left', 'right']
-const firstPlayer = ref(direction.random())
-function directionRandom() {
-    firstPlayer.value = direction.random()
-}
-// ----------------------------------------------------------------------
+
 
 watch(turn, (newTurn) => {
     if (newTurn === 9 && !winner.value) {
@@ -88,8 +80,7 @@ function checkWinner(iRow, iCell, movesOf) {
             
             board.value.forEach(row => {
                 row.forEach(cell => {
-                    if (cell.coord.includes(el) && cell.mark !== ' ') {
-
+                    if (cell.coord.includes(el)) {
                         cell.checkTris(true)
                     }
 
@@ -141,6 +132,16 @@ function retry() {
     resetAll()
     directionRandom()
     animation()
+}
+// ----------------------------------------------------------------------
+
+Array.prototype.random = function () {
+    return this[Math.floor((Math.random() * this.length))];
+}
+const direction = ['left', 'right']
+const firstPlayer = ref(direction.random())
+function directionRandom() {
+    firstPlayer.value = direction.random()
 }
 
 // trigger per l'animazione del player-chooser
