@@ -8,12 +8,16 @@ class Cell {
     constructor(mark, coord) {
         this.mark = mark;
         this.coord = coord
+        this.isTris = false
     }
     disabled() {
         this.mark = ' '
     }
     reset() {
         this.mark = ''
+    }
+    checkTris(boolean) {
+        this.isTris = boolean
     }
 }
 
@@ -81,11 +85,17 @@ function checkWinner(iRow, iCell, movesOf) {
             return e == el;
         }).length;
         if (itemsFound >= 2) {
-
+            
             board.value.forEach(row => {
                 row.forEach(cell => {
+                    if (cell.coord.includes(el) && cell.mark !== ' ') {
+
+                        cell.checkTris(true)
+                    }
+
                     if (!cell.mark) {
                         cell.disabled()
+                        
                     }
                 })
             })
@@ -116,12 +126,14 @@ function resetAll() {
     movesOfO.value = []
     turn.value = 0
     winner.value = false
+
 }
 
 function retry() {
     board.value.forEach(row => {
         row.forEach(cell => {
             cell.reset();
+            cell.checkTris(false)
 
 
         })
@@ -132,12 +144,12 @@ function retry() {
 }
 
 // trigger per l'animazione del player-chooser
-const animDisabled = ref(false)
+const anim = ref(false)
 
 function animation() {
-    animDisabled.value = true
+    anim.value = true
     setTimeout(() => {
-        animDisabled.value = false
+        anim.value = false
     }, 5000);
 
 }
@@ -156,12 +168,12 @@ animation()
     </div>
     <div class="board">
         <div class="row" v-for="(row, iRow) of board" :key="iRow">
-            <button class="cell" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell"
+            <button class="cell" :class="{tris : cell.isTris}" @click="move(iCell, iRow)" v-for="(cell, iCell) of row" :key="iCell"
                 :disabled="cell.mark != ''">{{ cell.mark }}
             </button>
         </div>
     </div>
-    <playerChooser :first-player="firstPlayer" :animDisabled="animDisabled" />
+    <playerChooser @click="anim = false"  :first-player="firstPlayer" :anim="anim" />
 </template>
 
 
@@ -219,5 +231,10 @@ animation()
 
 .row:nth-child(3)>.cell {
     border-bottom: none
+}
+
+.tris {
+    background-color: rgb(255, 255, 255);
+        
 }
 </style>

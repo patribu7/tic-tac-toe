@@ -1,11 +1,11 @@
 <script setup>
 import { ref } from 'vue'
-const props = defineProps(['firstPlayer', 'animDisabled'])
+const props = defineProps(['firstPlayer', 'anim'])
 
 </script>
 
 <template>
-    <div id="player-chooser" :class="{ slip: animDisabled }">
+    <div id="player-chooser" :class="{ slip: anim }">
         <img :src="`/src/assets/images/${firstPlayer}.gif`" /><br>
         <p>
             ❌ play first. <br>
