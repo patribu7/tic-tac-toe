@@ -1,7 +1,36 @@
-# Vue 3 + Vite
+# Tic-Tac-Toe
+Popular Tic-Tac-Toe game, made with Vue.js for exercise.
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Languages
 
-## Recommended IDE Setup
+- HTML5
+- CSS3
+- JavaScript
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Frameworks
+- Node.js
+- Vue.js 3 - Composition API
+- Vite
+
+## How to build
+
+### 1 - Clone the repository
+Clone this repository with 
+``` bash
+git clone https://github.com/patribu7/tic-tac-toe.git
+```
+### 2 - Install the dependencies
+
+With [Node.js](https://nodejs.org) launch this command to install the dependencies
+``` bash
+npm install
+```
+
+### 3 - Launch the application
+You can launch the application with
+``` bash
+npm run dev
+```
+it will be visible at url http://localhost:5173/
+
+## Credits
