@@ -23,12 +23,12 @@ const board =
         [new Cell('', [2, 4]), new Cell('', [2, 5, 7, 8]), new Cell('', [2, 6]),],
         [new Cell('', [3, 4, 8]), new Cell('', [3, 5]), new Cell('', [3, 6, 7]),]
     ]);
-
+// ----------------------------------------------------------------
 const turn = ref(0)
 const movesOfX = ref([])
 const movesOfO = ref([])
-const winner = ref(false)
-const mark = ref('❌')
+const winner = ref(false) //= draw, markX, markO
+const mark = ref('❌') //= markX, markO
 const currentScore = ref({
     scoreX: 0,
     scoreO: 0
@@ -37,6 +37,7 @@ const currentScore = ref({
 let draw = 'Oh, no! It\'s draw!';
 let markX = '❌';
 let markO = '🔵';
+// ---------------------------------------------------------------------
 
 Array.prototype.random = function () {
     return this[Math.floor((Math.random() * this.length))];
@@ -46,40 +47,35 @@ const firstPlayer = ref(direction.random())
 function directionRandom() {
     firstPlayer.value = direction.random()
 }
+// ----------------------------------------------------------------------
 
 watch(turn, (newTurn) => {
     if (newTurn === 9 && !winner.value) {
         winner.value = draw
     }
     if (newTurn % 2 === 0) {
-        
+
         if (newTurn !== 0) {
             audio.circle.play()
         }
         mark.value = markX
     } else {
-        
+
         audio.cross.play()
         mark.value = markO
     }
 })
 
-watch (winner, (newWinner) => {
+watch(winner, (newWinner) => {
     if (newWinner === markX || newWinner === markO) {
         audio.win.play()
     } else if (newWinner === draw) {
         audio.draw.play()
     }
 })
+// ----------------------------------------------------------------------
 
-function move(iCell, iRow) {
-    let movesOf
-    if (mark.value === markX) {
-        movesOf = movesOfX
-    } else {
-        movesOf = movesOfO
-    }
-    board.value[iRow][iCell].mark = mark.value
+function checkWinner(iRow, iCell, movesOf) {
     board.value[iRow][iCell].coord.forEach(el => {
         let itemsFound = movesOf.value.filter((e) => {
             return e == el;
@@ -99,25 +95,43 @@ function move(iCell, iRow) {
 
         }
     })
+}
+
+function move(iCell, iRow) {
+    let movesOf
+    if (mark.value === markX) {
+        movesOf = movesOfX
+    } else {
+        movesOf = movesOfO
+    }
+    board.value[iRow][iCell].mark = mark.value
+    checkWinner(iRow, iCell, movesOf)
     turn.value++
     movesOf.value.push(...board.value[iRow][iCell].coord);
+}
+// ----------------------------------------------------------------------
+
+function resetAll() {
+    movesOfX.value = []
+    movesOfO.value = []
+    turn.value = 0
+    winner.value = false
 }
 
 function retry() {
     board.value.forEach(row => {
         row.forEach(cell => {
             cell.reset();
-            movesOfX.value = []
-            movesOfO.value = []
-            turn.value = 0
-            winner.value = false
-            directionRandom()
-            animation()
+
 
         })
     })
+    resetAll()
+    directionRandom()
+    animation()
 }
 
+// trigger per l'animazione del player-chooser
 const animDisabled = ref(false)
 
 function animation() {
@@ -132,7 +146,6 @@ animation()
 
 
 <template>
-
     <score v-bind="currentScore" />
     <div class="turn" v-show="!winner">place {{ mark }} <br> &nbsp; <br> &nbsp; <br> &nbsp;
     </div>
@@ -174,7 +187,7 @@ animation()
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:rgba(255,0,0,0.0);
+    background-color: rgba(255, 0, 0, 0.0);
     font-size: 28pt;
 }
 
@@ -192,16 +205,19 @@ animation()
     align-items: center;
 }
 
-.cell:nth-child(1) { 
+.cell:nth-child(1) {
     border-left: none
 }
+
 .cell:nth-child(3) {
     border-right: none
 }
-.row:nth-child(1) > .cell {
+
+.row:nth-child(1)>.cell {
     border-top: none
 }
-.row:nth-child(3) > .cell {
+
+.row:nth-child(3)>.cell {
     border-bottom: none
 }
 </style>
