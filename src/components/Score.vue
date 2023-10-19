@@ -25,7 +25,6 @@ const props = defineProps(['scoreX', 'scoreO'])
 }
 .score > div {
     display: block;
-    width: 100px;
     text-align: center;
     font-size: 30pt;
 }
