@@ -33,7 +33,7 @@ You can launch the application with
 ``` bash
 npm run dev
 ```
-it will be visible at local url idicated 
+it will be visible at local url indicated 
 
 ## Contact me!
 

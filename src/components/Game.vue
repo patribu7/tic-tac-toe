@@ -38,9 +38,9 @@ const currentScore = ref({
     scoreO: 0
 })
 
-let draw = 'Oh, no! It\'s draw!';
-let markX = '❌';
-let markO = '🔵';
+const draw = 'Oh, no! It\'s draw!';
+const markX = '❌';
+const markO = '🔵';
 // ---------------------------------------------------------------------
 
 
