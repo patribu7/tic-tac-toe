@@ -1,6 +1,8 @@
 # Tic-Tac-Toe
 Popular Tic-Tac-Toe game, made with Vue.js for exercise.
 
+You can play [here](https://patribu7.github.io/tic-tac-toe/)
+
 ## Languages
 
 - HTML5
@@ -31,6 +33,9 @@ You can launch the application with
 ``` bash
 npm run dev
 ```
-it will be visible at url http://localhost:5173/
+it will be visible at local url idicated 
 
-## Credits
+## Contact me!
+
+You can find my Linkedin profile here:
+https://www.linkedin.com/in/patrizia-busatto/
