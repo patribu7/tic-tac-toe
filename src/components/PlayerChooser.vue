@@ -5,7 +5,7 @@ const props = defineProps(['firstPlayer', 'anim'])
 
 <template>
     <div id="player-chooser" :class="{ slip: anim }">
-        <img :src="`/src/assets/images/${firstPlayer}.gif`" /><br>
+        <img :src="`./src/assets/images/${firstPlayer}.gif`" /><br>
         <p>
             ❌ play first. <br>
             --- <br>
