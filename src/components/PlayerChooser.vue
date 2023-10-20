@@ -5,6 +5,8 @@ const props = defineProps(['firstPlayer', 'anim'])
 
 <template>
     <div id="player-chooser" :class="{ slip: anim }">
+        <img class="hide" src="src/assets/images/left.gif" alt="">
+        <img class="hide" src="src/assets/images/right.gif" alt="">
         <img :src="`src/assets/images/${firstPlayer}.gif`" /><br>
         <p>
             ❌ play first. <br>
@@ -12,7 +14,7 @@ const props = defineProps(['firstPlayer', 'anim'])
             The player who <br>
             play ❌ is<br>
             on the <strong>{{ firstPlayer }} </strong> <br>
-           
+
         </p>
         <p>...</p>
 
@@ -20,11 +22,11 @@ const props = defineProps(['firstPlayer', 'anim'])
 </template>
 
 <style scoped>
-
-
-img, p {
+img,
+p {
     margin: 0;
 }
+
 #player-chooser {
     position: absolute;
     display: flex;
@@ -56,15 +58,15 @@ img, p {
     0% {
         z-index: 100;
         opacity: 100%;
-        top:0
-        
+        top: 0
     }
 
     20% {
         z-index: 100;
-        opacity: 100%;  
+        opacity: 100%;
         top: calc(50% - 100px);
     }
+
     100% {
         z-index: 100;
         opacity: 100%;
@@ -72,5 +74,7 @@ img, p {
     }
 }
 
-
+.hide {
+    display: none;
+}
 </style>
