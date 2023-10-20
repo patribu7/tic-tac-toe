@@ -1,7 +1,9 @@
 <script setup>
 const props = defineProps(['firstPlayer', 'anim'])
 
-const imageUrl =  new URL('../../src/assets/images/' + props.firstPlayer + '.gif', import.meta.url).href
+import imageUrl from '../../src/assets/images/left.gif'
+
+// const imageUrl =  new URL('../../src/assets/images/' + props.firstPlayer + '.gif', import.meta.url).href
 
 
 </script>
