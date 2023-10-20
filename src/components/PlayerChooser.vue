@@ -1,13 +1,15 @@
 <script setup>
 const props = defineProps(['firstPlayer', 'anim'])
 
+const imageUrl =  new URL('../../src/assets/images/' + props.firstPlayer + '.gif', import.meta.url).href
+
+
 </script>
 
 <template>
     <div id="player-chooser" :class="{ slip: anim }">
-        <img class="hide" src="src/assets/images/left.gif" alt="">
-        <img class="hide" src="src/assets/images/right.gif" alt="">
-        <img :src="`src/assets/images/${firstPlayer}.gif`" /><br>
+
+        <img :src="imageUrl" /><br>
         <p>
             ❌ play first. <br>
             --- <br>
