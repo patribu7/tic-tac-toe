@@ -14,6 +14,15 @@
             <p><a href="https://github.com/patribu7/tic-tac-toe" target="_blank">repo Github</a></p>
         </div>
         <div class="footer-elem">
+            <div>
+                GIF di <a href="https://pixabay.com/it/users/susan-lu4esm-7009216/?utm_source=link-attribution&utm_medium=referral&utm_campaign=animation&utm_content=5330" target="_blank">Susan Cipriano</a> da <a href="https://pixabay.com/it//?utm_source=link-attribution&utm_medium=referral&utm_campaign=animation&utm_content=5330" target="_blank">Pixabay</a>
+            </div>
+            <div>
+                icons by <a target="_blank" href="https://icons8.com">Icons8</a>
+            </div>
+
+        </div>
+        <div class="footer-elem">
             <p>Copyright © 2023 Patrizia Busatto</p>
         </div>
 
