@@ -13,8 +13,7 @@ const props = defineProps(['scoreX', 'scoreO'])
 
 
 <style>
-.score {
-    position: absolute;
+.score { 
     display: flex;
     flex-direction: row;
     justify-content: space-between;

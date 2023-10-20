@@ -183,7 +183,7 @@ animation()
     margin-top: 10px;
     margin-left: 10px;
     width: 100px;
-    height: 40px;
+    height: 32px;
     border: none;
     border-radius: 10px;
     background-color: rgb(255, 255, 255);
