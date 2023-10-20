@@ -1,17 +1,19 @@
 <script setup>
+import { computed } from "vue";
+import image from "./images"
+
 const props = defineProps(['firstPlayer', 'anim'])
 
-import imageUrl from '../../src/assets/images/left.gif'
-
-// const imageUrl =  new URL('../../src/assets/images/' + props.firstPlayer + '.gif', import.meta.url).href
-
+const imageUrl = computed(() => {
+  return  props.firstPlayer  === 'left' ? image.left : image.right
+})
 
 </script>
 
 <template>
     <div id="player-chooser" :class="{ slip: anim }">
 
-        <img :src="imageUrl" /><br>
+        <img :src="imageUrl" alt="arrow"/> <br>
         <p>
             ❌ play first. <br>
             --- <br>
